@@ -14,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.os.Build;
@@ -59,6 +60,7 @@ public class MainActivity extends ActionBarActivity {
 	
     public static class PlaceholderFragment extends Fragment {
 
+    	private CheckBox cbox;
     	private Button button;
     	private EditText editText;
 
@@ -67,8 +69,17 @@ public class MainActivity extends ActionBarActivity {
         }
         
         private void send() {
-			String mytext = editText.getText().toString();					
-			Toast.makeText(getActivity(), mytext, Toast.LENGTH_SHORT).show();
+			String mytext = editText.getText().toString();
+
+			if (mytext != null && !mytext.equals("")) {
+				if (cbox.isChecked()){
+					mytext = "*****************";
+				}
+				Toast.makeText(getActivity(), mytext, Toast.LENGTH_SHORT).show();
+			}else{
+				Toast.makeText(getActivity(), "Please Input!", Toast.LENGTH_SHORT).show();
+			
+			}
 			editText.setText("");
         }
 
@@ -80,6 +91,7 @@ public class MainActivity extends ActionBarActivity {
         	        	
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             
+            cbox = (CheckBox) rootView.findViewById(R.id.checkBox1);
             button = (Button) rootView.findViewById(R.id.button1);
             editText = (EditText) rootView.findViewById(R.id.editText1);
             

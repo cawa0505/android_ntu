@@ -53,7 +53,7 @@ public class MainActivity extends ActionBarActivity {
      */
     public static class PlaceholderFragment extends Fragment {
 
-    	private Spinner month;
+    	private Spinner monthspin;
     	
         public PlaceholderFragment() {
         }
@@ -63,12 +63,12 @@ public class MainActivity extends ActionBarActivity {
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-			month = (Spinner) rootView.findViewById(R.id.month);
+			monthspin = (Spinner) rootView.findViewById(R.id.month);
 
 			String[] list = getResources().getStringArray(R.array.month);
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(
 					getActivity(), android.R.layout.simple_spinner_item, list);
-			month.setAdapter(adapter);
+			monthspin.setAdapter(adapter);
             
             return rootView;
         }

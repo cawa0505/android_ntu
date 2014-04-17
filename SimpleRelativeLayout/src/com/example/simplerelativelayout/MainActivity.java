@@ -54,6 +54,7 @@ public class MainActivity extends ActionBarActivity {
     public static class PlaceholderFragment extends Fragment {
 
     	private Spinner monthspin;
+    	private Spinner datespin;
     	
         public PlaceholderFragment() {
         }
@@ -64,14 +65,24 @@ public class MainActivity extends ActionBarActivity {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
 			monthspin = (Spinner) rootView.findViewById(R.id.month);
-
-			String[] list = getResources().getStringArray(R.array.month);
+			datespin= (Spinner) rootView.findViewById(R.id.date);
+			
+			String[] list = getResources().getStringArray(R.array.monthary);
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(
 					getActivity(), android.R.layout.simple_spinner_item, list);
 			monthspin.setAdapter(adapter);
+			
+			String[] list2 = new String[31];
+			for (int i = 0; i < 31; i++) {
+				list2[i] = String.valueOf(i + 1);
+			}
+			ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(
+					getActivity(), android.R.layout.simple_spinner_item, list2);
+			datespin.setAdapter(adapter2);
             
             return rootView;
         }
     }
 
 }
+

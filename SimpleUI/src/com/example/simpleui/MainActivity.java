@@ -3,6 +3,8 @@ package com.example.simpleui;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -64,6 +66,10 @@ public class MainActivity extends ActionBarActivity {
     	private Button button;
     	private EditText editText;
 
+    	//add @20140421
+    	private CheckBox checkBox;
+		private SharedPreferences sp;
+		private SharedPreferences.Editor editor;
     	
         public PlaceholderFragment() {
         }
@@ -76,6 +82,11 @@ public class MainActivity extends ActionBarActivity {
 					mytext = "*****************";
 				}
 				Toast.makeText(getActivity(), mytext, Toast.LENGTH_SHORT).show();
+			
+				//write to file
+				editor.putString("text", editText.getText().toString());
+				editor.commit();
+				
 			}else{
 				Toast.makeText(getActivity(), "Please Input!", Toast.LENGTH_SHORT).show();
 			
@@ -91,6 +102,10 @@ public class MainActivity extends ActionBarActivity {
         	        	
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             
+            sp = getActivity()
+					.getSharedPreferences("settings", Context.MODE_PRIVATE);
+			editor = sp.edit();
+			
             cbox = (CheckBox) rootView.findViewById(R.id.checkBox1);
             button = (Button) rootView.findViewById(R.id.button1);
             editText = (EditText) rootView.findViewById(R.id.editText1);
@@ -102,7 +117,7 @@ public class MainActivity extends ActionBarActivity {
 					if (e.getAction() == KeyEvent.ACTION_DOWN &&kcode==KeyEvent.KEYCODE_ENTER) {
 						send();
 						return true;
-					}
+					} 
 					return false;
 				}
 			});

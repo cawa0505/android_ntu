@@ -121,7 +121,7 @@ public class MainActivity extends ActionBarActivity {
 		
 			for (int i = 0; i < text.length; i++){
 				Map<String,Object> item = new HashMap<String,Object>();
-				item.put("text", text[i]);
+				item.put("text", TTT[i]);
 				item.put("image", imageIds[i]);
 				
 				data.add(item);
